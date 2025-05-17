@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paradima - Pagkakapantay-pantay ng Kasarian at LGBTQ+</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --purple: #6a1b9a;
+      --purple-light: #9c27b0;
+      --yellow: #ffd54f;
+      --pink: #f8bbd0;
+      --pink-light: #fce4ec;
+      --blue: #bbdefb;
+      --blue-light: #e3f2fd;
+      --teal: #26a69a;
+      --rainbow-gradient: linear-gradient(45deg, 
+        #ff0000, #ff8c00, #ffd700, #008000, 
+        #0000ff, #4b0082, #ee82ee);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Floating Pride Flags Animation */
+    .pride-flags-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .pride-flag {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+      animation: floatFlag 15s linear infinite;
+    }
+
+    @keyframes floatFlag {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+      }
+    }
+
+    /* Progress Pride Flag Banner */
+    .progress-pride-banner {
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, 
+        #000000 0%, #784F17 15%, #E70000 20%, 
+        #FF8C00 25%, #FFEF00 30%, #00811F 35%, 
+        #0044FF 40%, #760089 45%, #D8D8D8 50%, 
+        #FFAFC7 55%, #74D7EE 60%, #000000 65%);
+      position: relative;
+      animation: rainbowSlide 30s linear infinite;
+    }
+
+    @keyframes rainbowSlide {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    nav {
+      background-color: var(--purple);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s;
+      position: relative;
+      padding: 5px 10px;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--yellow);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 48px;
+      color: var(--purple);
+      margin: 60px 0 40px;
+      text-align: center;
+      animation: fadeInDown 1s ease-in-out;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Paradigm Sections */
+    .paradigm-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .column {
+      background: white;
+      border-radius: 15px;
+      width: 320px;
+      min-height: 520px;
+      padding: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .column:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .column::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--rainbow-gradient);
+    }
+
+    .node {
+      background: linear-gradient(45deg, var(--purple-light), var(--teal));
+      color: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      font-family: 'Roboto Slab', serif;
+      text-align: center;
+    }
+
+    .arrow {
+      font-size: 28px;
+      color: var(--purple);
+      margin: 15px 0;
+      text-align: center;
+      animation: bounce 2s infinite;
+    }
+
+    .explanation {
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+      padding: 0 10px;
+      margin-bottom: 20px;
+    }
+
+    .explanation strong {
+      color: var(--purple);
+    }
+
+    .image {
+      margin-top: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Conclusion Box */
+    .conclusion-box {
+      max-width: 1000px;
+      margin: 60px auto 100px;
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      color: var(--purple);
+      line-height: 1.6;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .conclusion-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--rainbow-gradient);
+    }
+
+    .conclusion-box strong {
+      font-size: 28px;
+    }
+
+    /* Pronouns Badge */
+    .pronouns-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--purple);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+
+    /* Footer */
+    footer {
+      background: var(--purple);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--yellow);
+    }
+
+    .footer-column p, .footer-column a {
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: var(--yellow);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--yellow);
+      color: #333;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .paradigm-container {
+        max-width: 90%;
+      }
+      .conclusion-box {
+        max-width: 90%;
+        font-size: 20px;
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin: 40px 0 30px;
+      }
+
+      .column {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 30px;
+      }
+
+      .conclusion-box {
+        font-size: 18px;
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Pride Flags Background -->
+<div class="pride-flags-container" id="flagsContainer"></div>
+
+<!-- Progress Pride Flag Banner -->
+<div class="progress-pride-banner"></div>
+
+<!-- Navbar -->
+<nav>
+  <a href="home.html"><i class="fas fa-home"></i> Home</a>
+  <a href="questions.html"><i class="fas fa-question-circle"></i> Tanong</a>
+  <a href="paradigm.html"><i class="fas fa-language"></i> Paradima</a>
+  <a href="thankyou.html"><i class="fas fa-hands-helping"></i> Pasasalamat</a>
+</nav>
+
+<!-- Title -->
+<h1>Paradima</h1>
+
+<!-- Paradigm Sections -->
+<div class="paradigm-container">
+
+  <!-- PAMANTASAN -->
+  <div class="column">
+    <div class="node">Pamantasan</div>
+    <div class="arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="explanation">
+      <strong>Pamantasan:</strong><br>
+      Sa pamantasan, itinuturo hindi
+      lamang ang kaalaman, kundi ang
+      respeto at pagkilala sa pagkakaiba. 
+      Ang pagkakaroon ng gender-
+      sensitive na wika sa silid-aralan ay
+      mahalaga tulad ng paggamit ng
+      inclusive terms, at pag-iwas sa
+      sexist language. Sa ganitong
+      paraan, pinapalaganap natin ang
+      pantay na karapatan sa pag-aaral at
+      pakikilahok.
+    </div>
+    <div class="image">
+      <img src="ntc.jpg" alt="Pamantasan" />
+    </div>
+  </div>
+
+  <!-- TRABAHO -->
+  <div class="column">
+    <div class="node">Trabaho</div>
+    <div class="arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="explanation">
+      <strong>Trabaho:</strong><br>
+     Sa trabaho, ang paggamit ng wika ay may impluwensya rin sa power dynamics. 
+
+
+Halimbawa, ang paraan ng pakikipag-usap sa mga kasamahan lalo na sa kababaihan at LGBTQIA+ ay dapat maging pantay at may respeto. 
+
+
+Ang sosyolinggwistika, o ang pag-aaral sa ugnayan ng wika at lipunan, ay tumutulong sa atin upang maintindihan kung paanong ang wika ay nakakaapekto sa opinyon, desisyon, at relasyon sa loob ng organisasyon.
+    </div>
+    <div class="image">
+      <img src="trabaho.jpg" alt="Trabaho" />
+    </div>
+  </div>
+
+  <!-- LIPUNAN -->
+  <div class="column">
+    <div class="node">Lipunan</div>
+    <div class="arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="explanation">
+      <strong>Lipunan:</strong><br>
+      Sa lipunan, dito higit na makikita ang
+koneksyon ng gender equality at
+wika. Maraming mga gender
+biases ang nakaugat sa ating mga
+salita halimbawa, kapag ang mga lider
+ay tinutukoy agad na "lalaki," o ang
+paggamit ng mga salitang mapanira
+sa mga taong hindi sumusunod sa
+tradisyonal na gender norms.
+
+
+ Dito pumapasok ang papel ng
+sosyolinggwistikana ipinapakita
+nito kung paanong ang ating mga
+salita ay makapangyarihan maaari
+tayong magbuklod o maglayo,
+magbukas ng isipan o magtakda ng
+hangganan.
+    </div>
+    <div class="image">
+      <img src="lipunan.jpg" alt="Lipunan" />
+    </div>
+  </div>
+
+</div>
+
+<!-- Konklusyon -->
+<div class="conclusion-box">
+  <strong>Konklusyon:</strong> <br>
+  Ang gender equality ay mahalaga sa bawat aspeto ng ating buhay, sa pamantasan, trabaho, at lipunan. Sa pagtutulungan ng lahat, mapapalakas natin ang pagkakapantay-pantay, respeto, at pagkakaunawaan sa ating komunidad, na maghahatid sa isang mas makatarungan at inklusibong mundo para sa lahat.
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Tungkol sa Amin</h3>
+      <p>Kami ay isang grupo na nagsusulong ng gender equality, LGBTQ+ rights, at inclusive na lipunan sa Pilipinas.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Mga Link</h3>
+      <a href="#">Gender Sensitivity Training</a>
+      <a href="#">LGBTQ+ Resources</a>
+      <a href="#">Anti-Discrimination Policies</a>
+      <a href="#">Mental Health Support</a>
+    </div>
+    <div class="footer-column">
+      <h3>Makipag-ugnayan</h3>
+      <p><i class="fas fa-envelope"></i> info@genderequality.ph</p>
+      <p><i class="fas fa-phone"></i> (02) 1234-5678</p>
+      <p><i class="fas fa-map-marker-alt"></i> Quezon City, Philippines</p>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2023 Gender Equality and LGBTQ+ Advocacy. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Pronouns Badge -->
+<div class="pronouns-badge">
+  <i class="fas fa-user-circle"></i>
+  <span>Respetuhin ang mga pronouns: she/her • he/him • they/them</span>
+</div>
+
+<script>
+  // Create floating pride flags
+  document.addEventListener('DOMContentLoaded', function() {
+    const flagsContainer = document.getElementById('flagsContainer');
+    const flagColors = [
+      'linear-gradient(to bottom, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D)',
+      'linear-gradient(to bottom, #5BCEFA, #F5A9B8, #FFFFFF, #F5A9B8, #5BCEFA)',
+      'linear-gradient(to bottom, #FF75A0, #FFD1E8, #FFFFFF, #E0BBE4, #BE93D4, #A97BB5, #856088)',
+      'linear-gradient(to bottom, #000000, #784F17, #E70000, #FF8C00, #FFEF00, #00811F, #0044FF, #760089)'
+    ];
+    
+    for (let i = 0; i < 20; i++) {
+      const flag = document.createElement('div');
+      flag.className = 'pride-flag';
+      flag.style.background = flagColors[Math.floor(Math.random() * flagColors.length)];
+      flag.style.left = Math.random() * 100 + 'vw';
+      flag.style.animationDuration = (10 + Math.random() * 20) + 's';
+      flag.style.animationDelay = Math.random() * 5 + 's';
+      flagsContainer.appendChild(flag);
+    }
+  });
+</script>
+</body>
+</html>

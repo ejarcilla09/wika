@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagkakapantay-pantay ng Kasarian at LGBTQ+</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --purple: #6a1b9a;
+      --purple-light: #9c27b0;
+      --yellow: #ffd54f;
+      --pink: #f8bbd0;
+      --pink-light: #fce4ec;
+      --blue: #bbdefb;
+      --blue-light: #e3f2fd;
+      --teal: #26a69a;
+      --rainbow-gradient: linear-gradient(45deg, 
+        #ff0000, #ff8c00, #ffd700, #008000, 
+        #0000ff, #4b0082, #ee82ee);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Floating Pride Flags Animation */
+    .pride-flags-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .pride-flag {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+      animation: floatFlag 15s linear infinite;
+    }
+
+    @keyframes floatFlag {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+      }
+    }
+
+    /* Progress Pride Flag Banner */
+    .progress-pride-banner {
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, 
+        #000000 0%, #784F17 15%, #E70000 20%, 
+        #FF8C00 25%, #FFEF00 30%, #00811F 35%, 
+        #0044FF 40%, #760089 45%, #D8D8D8 50%, 
+        #FFAFC7 55%, #74D7EE 60%, #000000 65%);
+      position: relative;
+      animation: rainbowSlide 30s linear infinite;
+    }
+
+    @keyframes rainbowSlide {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    nav {
+      background-color: var(--purple);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s;
+      position: relative;
+      padding: 5px 10px;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--yellow);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 60px 30px 40px;
+      animation: fadeInDown 1s ease-in-out;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--rainbow-gradient);
+      opacity: 0.1;
+      z-index: -1;
+      animation: rainbowRotate 60s linear infinite;
+    }
+
+    @keyframes rainbowRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-section h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 48px;
+      color: var(--purple);
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #555;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .home-image {
+      margin: 40px auto;
+      max-width: 90%;
+      width: 900px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1.5s ease-in-out;
+      transition: transform 0.3s;
+    }
+
+    .home-image:hover {
+      transform: scale(1.02);
+    }
+
+    .home-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* Gender Equality Principles Section */
+    .principles-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .principle-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      width: 300px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .principle-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--rainbow-gradient);
+    }
+
+    .principle-card h3 {
+      color: var(--purple);
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .principle-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .principle-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: var(--purple-light);
+    }
+
+    /* LGBTQ+ Terminology Section */
+    .terminology-section {
+      background: var(--pink-light);
+      padding: 50px 20px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .terminology-section h2 {
+      color: var(--purple);
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .terminology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .term-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .term-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .term-card h3 {
+      color: var(--teal);
+      margin-top: 0;
+    }
+
+    /* Call to Action */
+    .cta-section {
+      background: var(--rainbow-gradient);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      margin: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--purple);
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      background: var(--yellow);
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--purple);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--yellow);
+    }
+
+    .footer-column p, .footer-column a {
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: var(--yellow);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--yellow);
+      color: #333;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    /* Pronouns Badge */
+    .pronouns-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--purple);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        align-items: center;
+      }
+
+      .hero-section h1 {
+        font-size: 32px;
+      }
+
+      .hero-section p {
+        font-size: 16px;
+      }
+
+      .principles-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .principle-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Pride Flags Background -->
+<div class="pride-flags-container" id="flagsContainer"></div>
+
+<!-- Progress Pride Flag Banner -->
+<div class="progress-pride-banner"></div>
+
+<!-- Navbar -->
+<nav>
+  <a href="home.html"><i class="fas fa-home"></i> Home</a>
+  <a href="questions.html"><i class="fas fa-question-circle"></i> Tanong</a>
+  <a href="wika.html"><i class="fas fa-language"></i> Paradima</a>
+  <a href="thankyou.html"><i class="fas fa-hands-helping"></i> Pasasalamat</a>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <h1>Pagkakapantay-pantay at Sensitibidad sa Kasarian at LGBTQ+</h1>
+  <p>
+    Layunin naming sirain ang mga stereotype at bumuo ng isang lipunang may respeto, pag-unawa, at kapangyarihan para sa lahat ng kasarian at gender identities. Tuklasin natin kung paano isinusulong ang pagkakapantay-pantay, diversity, at inclusion sa paaralan, trabaho, at lipunan.
+  </p>
+</div>
+
+<!-- Larawan -->
+<div class="home-image">
+  <img src="https://www.workitdaily.com/media-library/gender-equality-concept.jpg?id=35080554&width=800&quality=85" alt="Pagkakapantay-pantay ng Kasarian at LGBTQ+ Community">
+</div>
+
+<!-- Gender Equality Principles Section -->
+<div class="principles-container">
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-venus-mars"></i></div>
+    <h3>Gender Equality</h3>
+    <p>Ang pantay na pagtrato at oportunidad para sa lahat ng kasarian anuman ang kanilang gender identity o sexual orientation.</p>
+  </div>
+  
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-rainbow"></i></div>
+    <h3>LGBTQ+ Rights</h3>
+    <p>Pagkilala at proteksyon ng mga karapatan ng lesbian, gay, bisexual, transgender, queer at iba pang gender identities.</p>
+  </div>
+  
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-heart"></i></div>
+    <h3>Paggalang sa Diversity</h3>
+    <p>Pag-unawa at pagtanggap sa iba't ibang gender expressions at sexual orientations sa lipunan.</p>
+  </div>
+  
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-comments"></i></div>
+    <h3>Gender-Neutral Language</h3>
+    <p>Paggamit ng inclusive na wika na nagre-respeto sa lahat ng gender identities at expressions.</p>
+  </div>
+  
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-gavel"></i></div>
+    <h3>Anti-Discrimination</h3>
+    <p>Pagbabawal sa lahat ng uri ng diskriminasyon batay sa kasarian, gender identity, o sexual orientation.</p>
+  </div>
+  
+  <div class="principle-card">
+    <div class="principle-icon"><i class="fas fa-hands-helping"></i></div>
+    <h3>Allyship</h3>
+    <p>Pagiging aktibong tagapagtaguyod at kakampi ng LGBTQ+ community kahit hindi ka miyembro nito.</p>
+  </div>
+</div>
+
+<!-- LGBTQ+ Terminology Section -->
+<div class="terminology-section">
+  <h2>Mga Importanteng Termino</h2>
+  <div class="terminology-grid">
+    <div class="term-card">
+      <h3>Gender Identity</h3>
+      <p>Ang panloob na pakiramdam ng isang tao kung sino sila (hal. babae, lalaki, non-binary, genderqueer).</p>
+    </div>
+    <div class="term-card">
+      <h3>Sexual Orientation</h3>
+      <p>Ang atraksyon ng isang tao sa iba (hal. heterosexual, homosexual, bisexual, pansexual).</p>
+    </div>
+    <div class="term-card">
+      <h3>Non-Binary</h3>
+      <p>Ang mga taong ang gender identity ay hindi eksklusibong lalaki o babae.</p>
+    </div>
+    <div class="term-card">
+      <h3>Transgender</h3>
+      <p>Ang mga taong ang gender identity ay iba sa sex na itinalaga sa kanila nang sila'y ipanganak.</p>
+    </div>
+    <div class="term-card">
+      <h3>Cisgender</h3>
+      <p>Ang mga taong ang gender identity ay tumutugma sa sex na itinalaga sa kanila nang sila'y ipanganak.</p>
+    </div>
+    <div class="term-card">
+      <h3>Intersex</h3>
+      <p>Ang mga taong ipinanganak na may biological traits na hindi eksklusibong lalaki o babae.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Tungkol sa Amin</h3>
+      <p>Kami ay isang grupo na nagsusulong ng gender equality, LGBTQ+ rights, at inclusive na lipunan sa Pilipinas.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Mga Link</h3>
+      <a href="#">Gender Sensitivity Training</a>
+      <a href="#">LGBTQ+ Resources</a>
+      <a href="#">Anti-Discrimination Policies</a>
+      <a href="#">Mental Health Support</a>
+    </div>
+    <div class="footer-column">
+      <h3>Makipag-ugnayan</h3>
+      <p><i class="fas fa-envelope"></i> info@genderequality.ph</p>
+      <p><i class="fas fa-phone"></i> (02) 1234-5678</p>
+      <p><i class="fas fa-map-marker-alt"></i> Quezon City, Philippines</p>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2023 Gender Equality and LGBTQ+ Advocacy. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Pronouns Badge -->
+<div class="pronouns-badge">
+  <i class="fas fa-user-circle"></i>
+  <span>Respetuhin ang mga pronouns: she/her • he/him • they/them</span>
+</div>
+
+<script>
+  // Create floating pride flags
+  document.addEventListener('DOMContentLoaded', function() {
+    const flagsContainer = document.getElementById('flagsContainer');
+    const flagColors = [
+      'linear-gradient(to bottom, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D)',
+      'linear-gradient(to bottom, #5BCEFA, #F5A9B8, #FFFFFF, #F5A9B8, #5BCEFA)',
+      'linear-gradient(to bottom, #FF75A0, #FFD1E8, #FFFFFF, #E0BBE4, #BE93D4, #A97BB5, #856088)',
+      'linear-gradient(to bottom, #000000, #784F17, #E70000, #FF8C00, #FFEF00, #00811F, #0044FF, #760089)'
+    ];
+    
+    for (let i = 0; i < 20; i++) {
+      const flag = document.createElement('div');
+      flag.className = 'pride-flag';
+      flag.style.background = flagColors[Math.floor(Math.random() * flagColors.length)];
+      flag.style.left = Math.random() * 100 + 'vw';
+      flag.style.animationDuration = (10 + Math.random() * 20) + 's';
+      flag.style.animationDelay = Math.random() * 5 + 's';
+      flagsContainer.appendChild(flag);
+    }
+    
+    // Add hover effect to principle cards
+    const cards = document.querySelectorAll('.principle-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.principle-icon i');
+        icon.style.transform = 'scale(1.2)';
+        icon.style.transition = 'transform 0.3s';
+      });
+      card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.principle-icon i');
+        icon.style.transform = 'scale(1)';
+      });
+    });
+  });
+</script>
+</body>
+</html>
